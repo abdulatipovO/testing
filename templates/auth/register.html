@@ -1,0 +1,49 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}
+    <h1>Register</h1>
+{% endblock title %}
+                
+{% block content %}
+<style>
+    .log{
+        /* max-width: 600px; */
+        margin:  8em auto;
+        width: 50% !important;
+
+    }
+</style>
+<div class="log">
+    {% if messages %}
+        {% for m in messages %}
+            <h1 class="text-{{ m.tags }}">{{ m }}</h1>
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'profil:register' %}" method="post">
+        {% csrf_token %}
+        <div class="logins user">
+            <input class="input" required type="text" name="first_name" placeholder="Name">
+            <input class="input" required type="text" name="last_name" placeholder="Surname ">
+            <input class="input" required type="email" name="email" placeholder="Enter your email">
+            <input class="input" required type="text" name="adres" placeholder="Enter your adress">
+            <input class="input" required type="text" name="username" placeholder="Enter username">
+            <input class="input" required type="password" name="password" placeholder="Enter your Password ">
+            <input class="input" required type="password" name="password_confirm" placeholder="Password confirm ">
+            <label for="msg">About yourself</label>
+            <textarea name="msg" required class="form-contrib" cols="30" rows="10"></textarea>
+            <div class="row-pas">
+                <input type="checkbox" ><span>Remember password</span>
+            </div>
+
+            <div class="form-group">
+                <span>Ro'yxatdan o'tganmisiz?</span>
+                <a href="{% url  'profil:login' %}">Kirish</a>
+            </div>
+
+            <button class="login-btn" type="submit" >Register</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock content %}
